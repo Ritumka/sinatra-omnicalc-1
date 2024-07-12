@@ -39,12 +39,13 @@ get("/payment/results") do
   @years = params.fetch("user_years").to_f
   @pv = params.fetch("user_pv").to_f
 
-  r = @apr % 100 % 12
+  r = (@apr / 100) / 12
   n = @years * 12
-
+  
   numerator = r * @pv
-
-  @payment = numerator / n
+  denominator = 1 - (1 + r) ** -n
+  
+  @payment = numerator / denominator
   
   erb(:payment_results)
 
