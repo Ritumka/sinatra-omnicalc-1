@@ -35,6 +35,16 @@ get("/payment/new") do
 end 
 
 get("/payment/results") do
+  @apr = params.fetch("user_apr").to_f 
+  @years = params.fetch("user_years").to_f
+  @pv = params.fetch("user_pv").to_f
+
+  r = @apr % 100 % 12
+  n = @years * 12
+
+  numerator = r * @pv
+
+  @payment = numerator / n
   
   erb(:payment_results)
 
