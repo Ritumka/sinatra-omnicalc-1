@@ -14,6 +14,7 @@ gem "sinatra-activerecord"
 
 gem "http"
 gem "dotenv"
+gem 'activesupport', '~> 8.0', '>= 8.0.1'
 
 group :development do
   gem "better_errors"
